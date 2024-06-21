@@ -1,11 +1,10 @@
-<<<<<<< HEAD
 import './styles/globals.css';
-import Sidebar from './components/sidebar/sidebar';
 import { cn } from './lib/utils';
 import { useState } from 'react';
 import MainDashboard from './components/tabsComponent/dashboard/MainDashboard';
 import MainSettings from './components/tabsComponent/settings/MainSettings';
 import MainTasks from './components/tabsComponent/tasks/MainTasks';
+import Sidebar from './components/sidebar/Sidebar';
 
 export default function App() {
   const [isOpen, setIsOpen] = useState(true);
@@ -43,14 +42,6 @@ export default function App() {
       >
         {renderActiveTab()}
       </div>
-=======
-import '../styles/globals.css';
-import LeftSide from './main/LeftSide';
-export default function App() {
-  return (
-    <div className="h-screen w-full max-w-full bg-default">
-      <LeftSide />
->>>>>>> 967fd7ffd9572c7ba85287eeacbbe3ee10be11ee
     </div>
   );
 }

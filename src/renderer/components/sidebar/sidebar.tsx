@@ -1,9 +1,8 @@
-<<<<<<< HEAD
-import { FC, useState, useEffect } from 'react';
-import { Icons } from '../icons/Icons';
-import { cn } from '../../lib/utils';
-import { sidebarTabs } from '../../lib/globalVariables';
-import tridentLogo from '../../../../assets/tridentLogo.png';
+import { FC, useState, useEffect } from "react";
+import { Icons } from "../icons/Icons";
+import { cn } from "../../lib/utils";
+import { sidebarTabs } from "../../lib/globalVariables";
+import tridentLogo from "../../../../assets/tridentLogo.png";
 
 interface IProps {
   onCallback: (value: boolean) => void;
@@ -13,7 +12,7 @@ interface IProps {
 const Sidebar: FC<IProps> = ({ onCallback, onActiveTabChange }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [openTab, setOpenTab] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<string | null>('Dashboard');
+  const [activeTab, setActiveTab] = useState<string | null>("Dashboard");
   const [activeSubTab, setActiveSubTab] = useState<string | null>(null);
 
   const handleToggleSidebar = () => {
@@ -57,7 +56,7 @@ const Sidebar: FC<IProps> = ({ onCallback, onActiveTabChange }) => {
 
   useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
-      if (event.ctrlKey && event.key === 's') {
+      if (event.ctrlKey && event.key === "s") {
         event.preventDefault();
         const activeTabIndex = sidebarTabs.findIndex(
           (tab) => tab.name === activeTab,
@@ -68,16 +67,16 @@ const Sidebar: FC<IProps> = ({ onCallback, onActiveTabChange }) => {
       }
     };
 
-    window.addEventListener('keydown', handleKeyPress);
+    window.addEventListener("keydown", handleKeyPress);
     return () => {
-      window.removeEventListener('keydown', handleKeyPress);
+      window.removeEventListener("keydown", handleKeyPress);
     };
   }, [activeTab, onActiveTabChange]);
 
   return (
     <div
       className={`h-screen w-full bg-transparent text-white transition-width duration-300 relative flex flex-col border-r-[1px] border-gray !z-30  ${
-        isCollapsed ? 'items-center' : 'items-start'
+        isCollapsed ? "items-center" : "items-start"
       }`}
     >
       <button
@@ -87,7 +86,7 @@ const Sidebar: FC<IProps> = ({ onCallback, onActiveTabChange }) => {
         }}
         className={cn(
           `absolute outline-none block !z-40  top-[50%]`,
-          isCollapsed ? '-right-6' : '-right-7',
+          isCollapsed ? "-right-6" : "-right-7",
         )}
       >
         {isCollapsed ? (
@@ -115,20 +114,20 @@ const Sidebar: FC<IProps> = ({ onCallback, onActiveTabChange }) => {
               key={tab.name}
               className={cn(
                 `w-full`,
-                isCollapsed && 'flex flex-col items-center',
+                isCollapsed && "flex flex-col items-center",
               )}
             >
               <div
                 className={cn(
                   `w-full flex items-center justify-between p-4 cursor-pointer hover:text-primary group`,
-                  activeTab === tab.name && 'text-primary',
-                  isCollapsed && 'w-fit',
+                  activeTab === tab.name && "text-primary",
+                  isCollapsed && "w-fit",
                 )}
                 style={{
                   background:
                     activeTab === tab.name
-                      ? 'linear-gradient(to right, rgb(0, 0, 0), rgb(5, 41, 8), rgb(44, 94, 47))'
-                      : '',
+                      ? "linear-gradient(to right, rgb(0, 0, 0), rgb(5, 41, 8), rgb(44, 94, 47))"
+                      : "",
                 }}
                 onClick={() => {
                   handleToggleTab(tab.name, tab.subTabs);
@@ -148,9 +147,9 @@ const Sidebar: FC<IProps> = ({ onCallback, onActiveTabChange }) => {
                   <span>
                     <Icons.ChevronDown
                       className={cn(
-                        'h-5 w-5 text-dust duration-150 group-hover',
+                        "h-5 w-5 text-dust duration-150 group-hover",
                         openTab === tab.name &&
-                          'rotate-180 transition-all text-primary',
+                          "rotate-180 transition-all text-primary",
                       )}
                     />
                   </span>
@@ -159,16 +158,16 @@ const Sidebar: FC<IProps> = ({ onCallback, onActiveTabChange }) => {
               {tab.subTabs && (
                 <div
                   className={cn(
-                    'overflow-hidden transition-max-height duration-300 ease-in-out ml-8',
-                    openTab === tab.name ? 'max-h-96' : 'max-h-0',
+                    "overflow-hidden transition-max-height duration-300 ease-in-out ml-8",
+                    openTab === tab.name ? "max-h-96" : "max-h-0",
                   )}
                 >
                   {tab.subTabs.map((subTab) => (
                     <div
                       key={subTab.name}
                       className={cn(
-                        'flex items-center p-4 cursor-pointer hover group',
-                        activeSubTab === subTab.name && 'text-primary',
+                        "flex items-center p-4 cursor-pointer hover group",
+                        activeSubTab === subTab.name && "text-primary",
                       )}
                       onClick={() => handleSubTabClick(subTab.name)}
                     >
@@ -184,104 +183,7 @@ const Sidebar: FC<IProps> = ({ onCallback, onActiveTabChange }) => {
           ))}
         </nav>
       </div>
-=======
-import { useState } from 'react';
-import { Icons } from '../icons/Icons';
-import { cn } from '../../lib/utils';
-
-interface Tab {
-  name: string;
-  icon: JSX.Element;
-  subTabs?: Tab[];
-}
-
-const tabs: Tab[] = [
-  {
-    name: 'Dashboard',
-    icon: <Icons.User className="h-6 w-6" />,
-  },
-  {
-    name: 'Settings',
-    icon: <Icons.User className="h-6 w-6" />,
-    subTabs: [
-      { name: 'Profile', icon: <Icons.User className="h-6 w-6" /> },
-      { name: 'Account', icon: <Icons.User className="h-6 w-6" /> },
-    ],
-  },
-  // Add more tabs as needed
-];
-
-const Sidebar = () => {
-  const [isCollapsed, setIsCollapsed] = useState(false);
-  const [openTab, setOpenTab] = useState<string | null>(null);
-
-  const handleToggleSidebar = () => {
-    setIsCollapsed(!isCollapsed);
-  };
-
-  const handleToggleTab = (tabName: string) => {
-    if (openTab === tabName) {
-      setOpenTab(null);
-    } else {
-      setOpenTab(tabName);
-    }
-  };
-
-  return (
-    <div
-      className={`h-full ${
-        isCollapsed ? 'w-20' : 'w-64'
-      } bg-gray-800 text-white transition-width duration-300`}
-    >
-      <div className="flex items-center justify-between p-4">
-        <span className="text-xl font-semibold">{!isCollapsed && 'MyApp'}</span>
-        <button onClick={handleToggleSidebar} className="focus:outline-none">
-          {isCollapsed ? '>>' : '<<'}
-        </button>
-      </div>
-      <nav className="mt-4">
-        {tabs.map((tab) => (
-          <div key={tab.name}>
-            <div
-              className="flex items-center justify-between p-4 hover:bg-gray-700 cursor-pointer"
-              onClick={() => tab.subTabs && handleToggleTab(tab.name)}
-            >
-              <div className="flex items-center">
-                {tab.icon}
-                {!isCollapsed && <span className="ml-4">{tab.name}</span>}
-              </div>
-              {!isCollapsed && tab.subTabs && (
-                <span>
-                  <Icons.ChevronDown
-                    className={cn(
-                      'h-5 w-5 text-dust duration-150',
-                      openTab === tab.name && 'rotate-180 transition-all',
-                    )}
-                  />
-                </span>
-              )}
-            </div>
-            {tab.subTabs && openTab === tab.name && (
-              <div className="ml-8">
-                {tab.subTabs.map((subTab) => (
-                  <div
-                    key={subTab.name}
-                    className="flex items-center p-4 hover:bg-gray-700 cursor-pointer"
-                  >
-                    {subTab.icon}
-                    {!isCollapsed && (
-                      <span className="ml-4">{subTab.name}</span>
-                    )}
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        ))}
-      </nav>
->>>>>>> 967fd7ffd9572c7ba85287eeacbbe3ee10be11ee
     </div>
   );
 };
-
 export default Sidebar;
