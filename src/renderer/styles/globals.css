@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.editScrollbar::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+.editScrollbar::-webkit-scrollbar-track {
+  background: #ababab;
+  border-radius: 10px;
+}
+
+.editScrollbar.with-background::-webkit-scrollbar-track {
+  background: #ababab;
+  border-radius: 10px;
+}
+
+.editScrollbar::-webkit-scrollbar-thumb {
+  background-color: #4c7a59;
+  border-radius: 20px;
+  border: 3px solid #4c7a59;
+  height: 30px;
+}
+
+.editScrollbar__menu-list::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+.editScrollbar__menu-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.editScrollbar__menu-list::-webkit-scrollbar-thumb {
+  background-color: #e6e6e2;
+  border-radius: 10px;
+  border: 3px solid #e6e6e2;
+}
+
+.editScrollbar__control.css-14aaaxd-control {
+  border-radius: 0.5rem !important;
+}
+
+.editScrollbar__control.css-1f915z8-control {
+  border-radius: 0.5rem !important;
+}
+.ReactVirtualized__Table__headerRow {
+}
+.ReactVirtualized__Table__headerColumn {
+  font-weight: 400 !important;
+}
+.ReactVirtualized__Table__headerRow {
+  border-bottom: 1px solid #e6e6e2;
+}

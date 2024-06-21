@@ -14,6 +14,7 @@ import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
+import fs from 'fs';
 
 class AppUpdater {
   constructor() {
@@ -73,6 +74,10 @@ const createWindow = async () => {
     show: false,
     width: 1024,
     height: 728,
+    minWidth: 1100,
+    minHeight: 700,
+    maxWidth: 1180,
+    maxHeight: 900,
     icon: getAssetPath('icon.png'),
     webPreferences: {
       preload: app.isPackaged
@@ -135,3 +140,43 @@ app
     });
   })
   .catch(console.log);
+
+ipcMain.handle('fetch-tasks', async () => {
+  try {
+    const filePath = path.join(app.getAppPath(), 'data.json');
+    const data = fs.readFileSync(filePath, 'utf-8');
+    const tasks = JSON.parse(data);
+    return tasks;
+  } catch (error) {
+    console.error('Error reading tasks file:', error);
+    throw new Error('Failed to fetch tasks');
+  }
+});
+
+const statuses = ['STARTING', 'GETTING', 'POSTING', 'COMPLETED'];
+const ids = [
+  { id: 1, message: '', statusIndex: 0 },
+  { id: 3, message: '', statusIndex: 0 },
+  { id: 6, message: '', statusIndex: 0 },
+  { id: 7, message: '', statusIndex: 0 },
+];
+
+function updateTaskMessages() {
+  ids.forEach((task) => {
+    task.statusIndex = (task.statusIndex + 1) % statuses.length;
+    task.message = statuses[task.statusIndex];
+  });
+}
+
+ipcMain.handle('get-task-status', async (event, taskId: number) => {
+  updateTaskMessages();
+  return ids;
+});
+
+setInterval(() => {
+  updateTaskMessages();
+
+  if (mainWindow) {
+    mainWindow.webContents.send('task-status-update', ids);
+  }
+}, 1000);

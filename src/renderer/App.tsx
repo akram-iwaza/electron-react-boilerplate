@@ -1,50 +1,47 @@
-import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
-import icon from '../../assets/icon.svg';
-import './App.css';
-
-function Hello() {
-  return (
-    <div>
-      <div className="Hello">
-        <img width="200" alt="icon" src={icon} />
-      </div>
-      <h1>electron-react-boilerplate</h1>
-      <div className="Hello">
-        <a
-          href="https://electron-react-boilerplate.js.org/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <button type="button">
-            <span role="img" aria-label="books">
-              📚
-            </span>
-            Read our docs
-          </button>
-        </a>
-        <a
-          href="https://github.com/sponsors/electron-react-boilerplate"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <button type="button">
-            <span role="img" aria-label="folded hands">
-              🙏
-            </span>
-            Donate
-          </button>
-        </a>
-      </div>
-    </div>
-  );
-}
+import './styles/globals.css';
+import Sidebar from './components/sidebar/sidebar';
+import { cn } from './lib/utils';
+import { useState } from 'react';
+import MainDashboard from './components/tabsComponent/dashboard/MainDashboard';
+import MainSettings from './components/tabsComponent/settings/MainSettings';
+import MainTasks from './components/tabsComponent/tasks/MainTasks';
 
 export default function App() {
+  const [isOpen, setIsOpen] = useState(true);
+  const [activeTab, setActiveTab] = useState('Dashboard');
+
+  const renderActiveTab = () => {
+    switch (activeTab) {
+      case 'Dashboard':
+        return <MainDashboard />;
+      case 'Tasks':
+        return <MainTasks isOpen={isOpen} />;
+      case 'Settings':
+        return <MainSettings />;
+      default:
+        return <MainDashboard />;
+    }
+  };
+
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Hello />} />
-      </Routes>
-    </Router>
+    <div className="h-screen w-full max-w-full bg-backgroundApp overflow-hidden flex items-start">
+      <div
+        className={cn(`h-screen max-h-screen`, isOpen ? 'w-[15%]' : 'w-[8%]')}
+      >
+        <Sidebar
+          onCallback={(value: boolean) => {
+            setIsOpen(value);
+          }}
+          onActiveTabChange={(value: string) => {
+            setActiveTab(value);
+          }}
+        />
+      </div>
+      <div
+        className={cn(`max-h-screen px-8 py-4`, isOpen ? 'w-[85%]' : 'w-[92%]')}
+      >
+        {renderActiveTab()}
+      </div>
+    </div>
   );
 }
