@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /** @type {import('tailwindcss').Config} */
 
 import defaultTheme from 'tailwindcss/defaultTheme';
@@ -10,6 +11,13 @@ module.exports = {
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
   ],
+=======
+const colors = require('tailwindcss/colors');
+import defaultTheme from 'tailwindcss/defaultTheme';
+module.exports = {
+  content: ['./src/renderer/**/*.{js,jsx,ts,tsx,ejs}'],
+  darkMode: ['class'],
+>>>>>>> 967fd7ffd9572c7ba85287eeacbbe3ee10be11ee
   theme: {
     screens: {
       iphone: '390px',
@@ -30,7 +38,11 @@ module.exports = {
       black: '#000000',
       default: '#383838',
       night: '#211D1E',
+<<<<<<< HEAD
       primary: '#7ece95',
+=======
+      primary: '#3BAA35',
+>>>>>>> 967fd7ffd9572c7ba85287eeacbbe3ee10be11ee
       emeralds: '#34932F',
       primaryDisabled: '#9EDC9A',
       secondary: '#253D4E',
@@ -79,7 +91,10 @@ module.exports = {
       darkPurple: '#6871BF',
       lightYellow: '#FFD789',
       lightRed: '#F5CACF',
+<<<<<<< HEAD
       backgroundApp: 'rgb(15, 29, 15)',
+=======
+>>>>>>> 967fd7ffd9572c7ba85287eeacbbe3ee10be11ee
     },
     extend: {
       backgroundImage: {

@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 import { cn } from '../../lib/utils';
 
+=======
+>>>>>>> 967fd7ffd9572c7ba85287eeacbbe3ee10be11ee
 interface IIconsProps {
   className?: string;
 }
@@ -43,6 +46,7 @@ export const Icons = {
       />
     </svg>
   ),
+<<<<<<< HEAD
   Spinner: (props: IIconsProps): JSX.Element => (
     <svg
       className={cn('animate-spin h-5 w-5 text-white', props?.className)}
@@ -282,4 +286,6 @@ export const Icons = {
       </g>
     </svg>
   ),
+=======
+>>>>>>> 967fd7ffd9572c7ba85287eeacbbe3ee10be11ee
 };
