@@ -4,14 +4,6 @@ import defaultTheme from 'tailwindcss/defaultTheme';
 const colors = require('tailwindcss/colors');
 
 module.exports = {
-  darkMode: ['class'],
-  content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-  ],
-module.exports = {
   content: ['./src/renderer/**/*.{js,jsx,ts,tsx,ejs}'],
   darkMode: ['class'],
   theme: {
@@ -146,4 +138,3 @@ module.exports = {
   },
   plugins: [require('tailwindcss-animate'), require('tailwind-scrollbar-hide')],
 };
-}

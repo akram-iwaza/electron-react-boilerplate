@@ -1,18 +1,14 @@
 {
-  "name": "electron-react-boilerplate",
+  "name": "tridentkitv2",
   "version": "4.6.0",
-  "description": "A foundation for scalable desktop apps",
+  "description": "Web3 Automation Software",
   "license": "MIT",
-  "author": {
-    "name": "Electron React Boilerplate Maintainers",
-    "email": "electronreactboilerplate@gmail.com",
-    "url": "https://github.com/electron-react-boilerplate"
-  },
   "main": "./dist/main/main.js",
   "scripts": {
     "rebuild": "node -r ts-node/register ../../.erb/scripts/electron-rebuild.js",
     "postinstall": "npm run rebuild && npm run link-modules",
-    "link-modules": "node -r ts-node/register ../../.erb/scripts/link-modules.ts"
+    "link-modules": "node -r ts-node/register ../../.erb/scripts/link-modules.ts",
+    "postversion": "git add -A && git commit -m \"Version patch\" && git push origin HEAD"
   },
   "dependencies": {}
 }

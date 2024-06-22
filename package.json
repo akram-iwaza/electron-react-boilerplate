@@ -1,5 +1,5 @@
 {
-  "description": "A foundation for scalable desktop apps",
+  "description": "A Web3 automation software",
   "keywords": [
     "electron",
     "boilerplate",
@@ -11,19 +11,7 @@
     "hot",
     "reload"
   ],
-  "homepage": "https://github.com/electron-react-boilerplate/electron-react-boilerplate#readme",
-  "bugs": {
-    "url": "https://github.com/electron-react-boilerplate/electron-react-boilerplate/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/electron-react-boilerplate/electron-react-boilerplate.git"
-  },
   "license": "MIT",
-  "author": "Electron React Boilerplate Maintainers <electronreactboilerplate@gmail.com> (https://electron-react-boilerplate.js.org)",
-  "contributors": [
-    "Amila Welihinda <amilajack@gmail.com> (https://github.com/amilajack)"
-  ],
   "main": "./src/main/main.ts",
   "scripts": {
     "build": "concurrently \"npm run build:main\" \"npm run build:renderer\"",
@@ -158,7 +146,7 @@
     "concurrently": "^8.2.1",
     "core-js": "^3.32.2",
     "cross-env": "^7.0.3",
-    "css-loader": "^6.11.0",
+    "css-loader": "^5.2.6",
     "css-minimizer-webpack-plugin": "^5.0.1",
     "detect-port": "^1.5.1",
     "electron": "^26.2.1",
@@ -186,15 +174,15 @@
     "mini-css-extract-plugin": "^2.7.6",
     "path-browserify": "^1.0.1",
     "postcss": "^8.4.38",
-    "postcss-loader": "^8.1.1",
+    "postcss-loader": "^4.3.0",
     "prettier": "^3.0.3",
     "react-refresh": "^0.14.0",
     "react-test-renderer": "^18.2.0",
     "rimraf": "^5.0.1",
     "sass": "^1.67.0",
-    "sass-loader": "^13.3.3",
+    "sass-loader": "^10.1.1",
     "stream-browserify": "^3.0.0",
-    "style-loader": "^3.3.4",
+    "style-loader": "^2.0.0",
     "tailwindcss": "^3.4.4",
     "terser-webpack-plugin": "^5.3.9",
     "ts-jest": "^29.1.1",
@@ -203,7 +191,7 @@
     "tsconfig-paths-webpack-plugin": "^4.1.0",
     "typescript": "^5.4.5",
     "url-loader": "^4.1.1",
-    "webpack": "^5.88.2",
+    "webpack": "^5.92.1",
     "webpack-bundle-analyzer": "^4.9.1",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1",
@@ -268,13 +256,11 @@
       "./assets/**"
     ],
     "publish": {
-      "provider": "github",
-      "owner": "electron-react-boilerplate",
-      "repo": "electron-react-boilerplate"
+      "provider": "spaces",
+      "name": "electron-auto-updater",
+      "region": "nyc3",
+      "acl": "public-read"
     }
-  },
-  "collective": {
-    "url": "https://opencollective.com/electron-react-boilerplate-594"
   },
   "devEngines": {
     "node": ">=14.x",
