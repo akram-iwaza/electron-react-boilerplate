@@ -139,13 +139,13 @@ export const Icons = {
     >
       <path
         d="M4.50001 0.658722L4.5 64.3413L18.3616 60.471C23.7639 58.9626 27.5 54.0404 27.5 48.4315L27.5 16.5685C27.5 10.9596 23.7639 6.03738 18.3616 4.529L4.50001 0.658722Z"
-        fill="#9DB6C51a"
-        stroke="#9DB6C51a"
+        fill="#071311"
+        stroke="#071311"
       />
 
       <path
         d="M13.5 28L18.5 33L13.5 38"
-        stroke="#7ece95"
+        stroke="#00feb6"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -163,11 +163,11 @@ export const Icons = {
     >
       <path
         d="M0 65L14.496 60.9526C20.1144 59.3839 24 54.2648 24 48.4315L24 16.5685C24 10.7352 20.1144 5.61613 14.496 4.04742L1.1365e-05 -7.62939e-06L0 65Z"
-        fill="#9DB6C51a"
+        fill="#071311"
       />
       <path
         d="M14.5 28L9.5 33L14.5 38"
-        stroke="#7ece95"
+        stroke="#00feb6"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"

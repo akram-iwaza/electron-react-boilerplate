@@ -11,6 +11,14 @@ export const sidebarTabs: ITab[] = [
     icon: <Icons.Settings className="h-6 w-6" />,
   },
   {
+    name: 'Wallets',
+    icon: <Icons.Settings className="h-6 w-6" />,
+  },
+  {
+    name: 'Proxies',
+    icon: <Icons.Settings className="h-6 w-6" />,
+  },
+  {
     name: 'Settings',
     icon: <Icons.Settings className="h-6 w-6" />,
   },

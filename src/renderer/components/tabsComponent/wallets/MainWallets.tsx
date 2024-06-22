@@ -13,7 +13,7 @@ declare global {
   }
 }
 
-const MainTasks: React.FC<IProps> = ({ isOpen }) => {
+const MainWallets: React.FC<IProps> = ({ isOpen }) => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [playingTasks, setPlayingTasks] = useState<number[]>([]);
   const [selectedTasks, setSelectedTasks] = useState<number[]>([]);
@@ -177,4 +177,4 @@ const MainTasks: React.FC<IProps> = ({ isOpen }) => {
   );
 };
 
-export default MainTasks;
+export default MainWallets;

@@ -1,6 +1,6 @@
 import { Table, Column, AutoSizer } from 'react-virtualized';
 import 'react-virtualized/styles.css';
-import { Checkbox } from '../../ui/checkbox';
+import { Checkbox } from '../ui/checkbox';
 
 const TableComponent = <T extends { id: number }>({
   tasks,

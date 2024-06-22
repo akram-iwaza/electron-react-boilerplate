@@ -5,6 +5,8 @@ import MainDashboard from './components/tabsComponent/dashboard/MainDashboard';
 import MainSettings from './components/tabsComponent/settings/MainSettings';
 import MainTasks from './components/tabsComponent/tasks/MainTasks';
 import Sidebar from './components/sidebar/Sidebar';
+import MainWallets from './components/tabsComponent/wallets/MainWallets';
+import MainProxies from './components/tabsComponent/proxies/MainProxies';
 
 export default function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,6 +18,10 @@ export default function App() {
         return <MainDashboard />;
       case 'Tasks':
         return <MainTasks isOpen={isOpen} />;
+      case 'Wallets':
+        return <MainWallets isOpen={isOpen} />;
+      case 'Proxies':
+        return <MainProxies isOpen={isOpen} />;
       case 'Settings':
         return <MainSettings />;
       default:

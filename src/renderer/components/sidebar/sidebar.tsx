@@ -65,20 +65,45 @@ const Sidebar: FC<IProps> = ({ onCallback, onActiveTabChange }) => {
     };
   }, [activeTab, onActiveTabChange]);
 
+  const handleToggleSidebar = () => {
+    setIsCollapsed(!isCollapsed);
+    if (!isCollapsed) {
+      setOpenTab(null);
+      setActiveSubTab(null);
+    }
+  };
+
   return (
     <motion.div
       className="h-screen !bg-dashBg px-3 bg-transparent text-whiteColor relative flex flex-col z-30"
       animate={{ width: isCollapsed ? '100px' : '180px' }}
       transition={{ duration: 0.3 }}
-      onMouseEnter={() => {
-        setIsCollapsed(false);
-        onCallback(true);
-      }}
-      onMouseLeave={() => {
-        setIsCollapsed(true);
-        onCallback(false);
-      }}
+      // onMouseEnter={() => {
+      //   setIsCollapsed(false);
+      //   onCallback(true);
+      // }}
+      // onMouseLeave={() => {
+      //   setIsCollapsed(true);
+      //   onCallback(false);
+      // }}
     >
+      <button
+        onClick={() => {
+          handleToggleSidebar();
+          onCallback(isCollapsed);
+        }}
+        className={cn(
+          `absolute outline-none block z-40 top-[50%]`,
+          isCollapsed ? '-right-6' : '-right-7',
+        )}
+      >
+        {isCollapsed ? (
+          <Icons.SidebarToggleRight />
+        ) : (
+          <Icons.SidebarToggleLeft className="relative" />
+        )}
+      </button>
+
       <div className="w-full overflow-x-hidden overflow-y-auto max-h-screen scrollbar-hide">
         <div className="flex items-center justify-between p-4 w-full">
           <h1 className="text-titleColor text-2xl font-bold">Dashboard</h1>
@@ -165,30 +190,3 @@ const Sidebar: FC<IProps> = ({ onCallback, onActiveTabChange }) => {
 };
 
 export default Sidebar;
-
-// const handleToggleSidebar = () => {
-//   setIsCollapsed(!isCollapsed);
-//   if (!isCollapsed) {
-//     setOpenTab(null);
-//     setActiveSubTab(null);
-//   }
-// };
-
-{
-  /* <button
-        onClick={() => {
-          handleToggleSidebar();
-          onCallback(isCollapsed);
-        }}
-        className={cn(
-          `absolute outline-none block z-40 top-[50%]`,
-          isCollapsed ? '-right-6' : '-right-7',
-        )}
-      >
-        {isCollapsed ? (
-          <Icons.SidebarToggleRight />
-        ) : (
-          <Icons.SidebarToggleLeft className="relative" />
-        )}
-      </button> */
-}
