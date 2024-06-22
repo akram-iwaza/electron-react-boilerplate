@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
-import TableComponent from "./TableComponent";
-import { Icons } from "../../icons/Icons";
-import useFetch from "../../../hooks/useFetch";
-import { ElectronHandler } from "../../../../main/preload";
-import useStatuses from "../../../hooks/useStatuses";
-import TableSkeleton from "../../skeletons/TableSkeleton";
+import React, { useEffect, useState } from 'react';
+import TableComponent from './TableComponent';
+import { Icons } from '../../icons/Icons';
+import useFetch from '../../../hooks/useFetch';
+import { ElectronHandler } from '../../../../main/preload';
+import useStatuses from '../../../hooks/useStatuses';
+import TableSkeleton from '../../skeletons/TableSkeleton';
+import GroupTabs from '../../custom/GroupTabs';
 
 declare global {
   interface Window {
@@ -16,46 +17,42 @@ const MainTasks: React.FC<IProps> = ({ isOpen }) => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [playingTasks, setPlayingTasks] = useState<number[]>([]);
   const [selectedTasks, setSelectedTasks] = useState<number[]>([]);
+  const [selectedTab, setSelectedTab] = useState<string>('');
   const taskStatuses = useStatuses();
-  const { data, isLoading, error } = useFetch("fetch-tasks");
+  const { data, isLoading, error } = useFetch<Group[]>('fetch-tasks');
+  const { data: groupData } = useFetch<string[]>('group-names');
+
+  const handleAddTab = () => {};
+
+  const handleTabClick = (tabName: string) => {
+    setSelectedTab(tabName);
+    const selectedGroup = data?.find((group) => group.name === tabName);
+    if (selectedGroup) {
+      setTasks(selectedGroup.groupData);
+    }
+  };
 
   const columns: Array<{
     label: string;
-    dataKey: keyof MyTask | "status";
+    dataKey: keyof Task | 'status';
     width: number;
     cellRenderer?: (props: any) => React.ReactNode;
   }> = [
+    { label: 'ID', dataKey: 'id', width: 100 },
+    { label: 'Task Name', dataKey: 'taskname', width: 200 },
+    { label: 'Wallet Name', dataKey: 'walletname', width: 200 },
+    { label: 'Proxy Name', dataKey: 'proxyname', width: 200 },
     {
-      label: "ID",
-      dataKey: "id",
-      width: 100,
-    },
-    {
-      label: "Task Name",
-      dataKey: "taskname",
-      width: 200,
-    },
-    {
-      label: "Wallet Name",
-      dataKey: "walletname",
-      width: 200,
-    },
-    {
-      label: "Proxy Name",
-      dataKey: "proxyname",
-      width: 200,
-    },
-    {
-      label: "Status",
-      dataKey: "status",
+      label: 'Status',
+      dataKey: 'status',
       width: 100,
       cellRenderer: ({ rowIndex }: { rowIndex: number }) => (
-        <span>{taskStatuses[tasks[rowIndex].id] || "IDLE"}</span>
+        <span>{taskStatuses[tasks[rowIndex].id] || 'IDLE'}</span>
       ),
     },
     {
-      label: "Actions",
-      dataKey: "id",
+      label: 'Actions',
+      dataKey: 'id',
       width: 100,
       cellRenderer: ({ rowIndex }: { rowIndex: number }) => (
         <div className="w-full flex items-center gap-1">
@@ -128,7 +125,10 @@ const MainTasks: React.FC<IProps> = ({ isOpen }) => {
   };
 
   useEffect(() => {
-    if (data) setTasks(data);
+    if (data && data.length > 0) {
+      setSelectedTab(data[0].name);
+      setTasks(data[0].groupData);
+    }
   }, [data]);
 
   if (isLoading) {
@@ -153,8 +153,16 @@ const MainTasks: React.FC<IProps> = ({ isOpen }) => {
       >
         Start All
       </button>
+      <div className="w-full max-w-full">
+        <GroupTabs
+          tabs={groupData}
+          onAddTab={handleAddTab}
+          onTabClick={handleTabClick}
+          selectedTab={selectedTab}
+        />
+      </div>
       <div className="w-full">
-        <TableComponent<MyTask>
+        <TableComponent<Task>
           tasks={tasks}
           columns={columns}
           playingTasks={playingTasks}

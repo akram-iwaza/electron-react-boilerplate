@@ -1,6 +1,6 @@
-import { Table, Column, AutoSizer } from "react-virtualized";
-import "react-virtualized/styles.css";
-import { Checkbox } from "../../ui/checkbox";
+import { Table, Column, AutoSizer } from 'react-virtualized';
+import 'react-virtualized/styles.css';
+import { Checkbox } from '../../ui/checkbox';
 
 const TableComponent = <T extends { id: number }>({
   tasks,
@@ -22,7 +22,7 @@ const TableComponent = <T extends { id: number }>({
             rowHeight={50}
             rowCount={tasks.length}
             rowGetter={rowGetter}
-            className="text-white !w-full !h-[85vh] !font-normal"
+            className="text-whiteColor !w-full !h-[85vh] !font-normal"
           >
             <Column
               label={
@@ -51,9 +51,7 @@ const TableComponent = <T extends { id: number }>({
                 dataKey={String(column.dataKey)}
                 width={column.width}
                 headerRenderer={() => (
-                  <div style={{ textTransform: "capitalize" }}>
-                    {column.label}
-                  </div>
+                  <div className="capitalize font-semibold">{column.label}</div>
                 )}
                 cellRenderer={column.cellRenderer}
               />

@@ -22,7 +22,7 @@ const Checkbox = React.forwardRef<HTMLButtonElement, ICheckboxProps>(
         }
       }}
       className={cn(
-        'peer h-[1.125rem] w-[1.125rem] shrink-0 rounded-[0.25rem] border border-nickle focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:border-primary data-[state=checked]:bg-primary data-[state=checked]:text-white',
+        'peer h-[1.125rem] w-[1.125rem] shrink-0 rounded-[0.25rem] border border-nickle focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:border-activeColor data-[state=checked]:bg-activeColor data-[state=checked]:text-white',
         className,
       )}
       {...props}

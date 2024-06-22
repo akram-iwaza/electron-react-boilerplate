@@ -76,7 +76,7 @@ const createWindow = async () => {
     height: 728,
     minWidth: 1100,
     minHeight: 700,
-    maxWidth: 1180,
+    maxWidth: 1280,
     maxHeight: 900,
     icon: getAssetPath('icon.png'),
     webPreferences: {
@@ -180,3 +180,16 @@ setInterval(() => {
     mainWindow.webContents.send('task-status-update', ids);
   }
 }, 1000);
+
+ipcMain.handle('group-names', async () => {
+  try {
+    const filePath = path.join(app.getAppPath(), 'data.json');
+    const data = fs.readFileSync(filePath, 'utf-8');
+    const groups = JSON.parse(data);
+    const groupNames = groups.map((group: { name: string }) => group.name);
+    return groupNames;
+  } catch (error) {
+    console.error('Error reading tasks file:', error);
+    throw new Error('Failed to fetch tasks');
+  }
+});

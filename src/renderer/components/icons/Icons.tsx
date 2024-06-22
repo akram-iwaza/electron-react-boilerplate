@@ -1,4 +1,4 @@
-import { cn } from "../../lib/utils";
+import { cn } from '../../lib/utils';
 
 interface IIconsProps {
   className?: string;
@@ -45,7 +45,7 @@ export const Icons = {
   ),
   Spinner: (props: IIconsProps): JSX.Element => (
     <svg
-      className={cn("animate-spin h-5 w-5 text-white", props?.className)}
+      className={cn('animate-spin h-5 w-5 text-white', props?.className)}
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
@@ -280,6 +280,24 @@ export const Icons = {
           fill="currentColor"
         />
       </g>
+    </svg>
+  ),
+  Plus: (props: IIconsProps): JSX.Element => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="18"
+      height="18"
+      viewBox="0 0 18 18"
+      fill="none"
+      className={props?.className}
+    >
+      <path
+        d="M4.5 9H9M13.5 9H9M9 9V4.5M9 9V13.5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   ),
 };

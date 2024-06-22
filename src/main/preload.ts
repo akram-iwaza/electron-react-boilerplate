@@ -4,7 +4,8 @@ export type Channels =
   | 'ipc-example'
   | 'fetch-tasks'
   | 'get-task-status'
-  | 'task-status-update';
+  | 'task-status-update'
+  | 'group-names';
 
 const electronHandler = {
   ipcRenderer: {

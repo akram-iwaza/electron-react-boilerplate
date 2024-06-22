@@ -1,11 +1,11 @@
 const fs = require('fs');
 const { faker } = require('@faker-js/faker');
 
-const generateTasks = (num) => {
+const generateTasks = (num, startId) => {
   const tasks = [];
   for (let i = 0; i < num; i++) {
     const task = {
-      id: i + 1,
+      id: startId + i,
       taskname: faker.hacker.verb() + ' ' + faker.hacker.noun(),
       walletname: faker.finance.accountName(),
       proxyname: faker.internet.ip(),
@@ -15,6 +15,24 @@ const generateTasks = (num) => {
   return tasks;
 };
 
-const tasks = generateTasks(1000);
-fs.writeFileSync('data.json', JSON.stringify(tasks, null, 2), 'utf-8');
-console.log('Generated 1000 tasks and saved to data.json');
+const refactorData = (groups) => {
+  const result = [];
+  let startId = 1;
+  groups.forEach((group, index) => {
+    const tasks = generateTasks(group.count, startId);
+    startId += group.count;
+    const groupName = `Group ${index + 1}`;
+    result.push({
+      name: groupName,
+      groupData: tasks,
+    });
+  });
+  return result;
+};
+
+const groups = [{ count: 1000 }, { count: 2000 }, { count: 5000 }];
+
+const groupedData = refactorData(groups);
+
+fs.writeFileSync('data.json', JSON.stringify(groupedData, null, 2), 'utf-8');
+console.log('Generated and grouped tasks, saved to data.json');

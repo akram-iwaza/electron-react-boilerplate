@@ -7,7 +7,7 @@ import MainTasks from './components/tabsComponent/tasks/MainTasks';
 import Sidebar from './components/sidebar/Sidebar';
 
 export default function App() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('Dashboard');
 
   const renderActiveTab = () => {
@@ -22,6 +22,7 @@ export default function App() {
         return <MainDashboard />;
     }
   };
+  console.log('isOpen : ', isOpen);
 
   return (
     <div className="h-screen w-full max-w-full bg-backgroundApp overflow-hidden flex items-start">
